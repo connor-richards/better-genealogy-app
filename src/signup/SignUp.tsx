@@ -1,29 +1,21 @@
 import React, { useState } from "react";
 import { auth } from "../firebaseconfig"; // Import Firebase services
-import { signInWithEmailAndPassword } from "firebase/auth";
-import {
-  Button,
-  TextField,
-  Container,
-  Box,
-  Typography,
-  Link,
-} from "@mui/material";
-import { Link as RouterLink } from "react-router-dom"; // Use RouterLink for internal routing
-import mainLogo from "../assets/main-logo.png"; // Import the logo image
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Button, TextField, Container, Box, Typography } from "@mui/material";
 
-const Login = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful");
-    } catch (error) {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Account created successfully!");
+    } catch (error: any) {
       console.error(error);
-      alert("Login failed");
+      setError(error.message || "Account creation failed");
     }
   };
 
@@ -36,16 +28,15 @@ const Login = () => {
         justifyContent="center"
         sx={{ mt: 8 }}
       >
-        {/* Display the logo */}
-        <Box
-          component="img"
-          src={mainLogo}
-          alt="Main Logo"
-          sx={{ width: 150, height: "auto", mb: 3 }} // Adjust the size and margin
-        />
-
-        {/* Form for login */}
-        <form onSubmit={handleLogin} style={{ width: "100%" }}>
+        <Typography variant="h4" gutterBottom>
+          Create an Account
+        </Typography>
+        {error && (
+          <Typography color="error" variant="body2">
+            {error}
+          </Typography>
+        )}
+        <form onSubmit={handleSignUp} style={{ width: "100%" }}>
           <TextField
             fullWidth
             label="Email"
@@ -54,6 +45,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             margin="normal"
             variant="outlined"
+            required
           />
           <TextField
             fullWidth
@@ -63,6 +55,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             margin="normal"
             variant="outlined"
+            required
           />
           <Button
             type="submit"
@@ -71,20 +64,12 @@ const Login = () => {
             color="primary"
             sx={{ mt: 3 }}
           >
-            Login
+            Sign Up
           </Button>
         </form>
-
-        {/* Link to Sign-Up page */}
-        <Typography variant="body2" sx={{ mt: 2 }}>
-          Don't have an account?{" "}
-          <Link component={RouterLink} to="/signup">
-            Sign up here
-          </Link>
-        </Typography>
       </Box>
     </Container>
   );
 };
 
-export default Login;
+export default SignUp;
