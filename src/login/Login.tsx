@@ -1,11 +1,11 @@
 // src/login/Login.tsx
 import React, { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseconfig"; // Import Firebase services
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const auth = getAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h1>Login Page</h1>
       <form onSubmit={handleLogin}>
         <input
           type="email"
