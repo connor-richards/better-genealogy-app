@@ -1,7 +1,8 @@
-// src/login/Login.tsx
 import React, { useState } from "react";
 import { auth } from "../firebaseconfig"; // Import Firebase services
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Button, TextField, Container, Box } from "@mui/material";
+import mainLogo from "../assets/main-logo.png"; // Import the logo image
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,24 +20,51 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+    <Container maxWidth="sm">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ mt: 8 }}
+      >
+        <Box
+          component="img"
+          src={mainLogo}
+          alt="Main Logo"
+          sx={{ width: 300, height: "auto", mb: 3 }} // Adjust the size as needed
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+        <form onSubmit={handleLogin} style={{ width: "100%" }}>
+          <TextField
+            fullWidth
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            margin="normal"
+            variant="outlined"
+          />
+          <TextField
+            fullWidth
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            margin="normal"
+            variant="outlined"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{ mt: 3 }}
+          >
+            Login
+          </Button>
+        </form>
+      </Box>
+    </Container>
   );
 };
 
