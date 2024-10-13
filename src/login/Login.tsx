@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { auth } from "../firebaseconfig"; // Import Firebase services
+import React, { useState, useEffect } from "react";
+import { auth } from "../firebaseconfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   Button,
@@ -9,13 +9,26 @@ import {
   Typography,
   Link,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom"; // Use RouterLink for internal routing
-import mainLogo from "../assets/logo1024.png"; // Import the logo image
-import "./Login.css"; // Import the CSS file
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import mainLogo from "../assets/logo1024.png";
+import "./Login.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    // Show success toast if redirected from sign-up
+    if (location.state?.showToast) {
+      toast.success("Account created successfully. Please log in.", {
+        position: "top-center",
+        autoClose: 5000,
+      });
+    }
+  }, [location.state]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,8 +43,8 @@ const Login = () => {
 
   return (
     <Container maxWidth="sm">
+      <ToastContainer /> {/* Toast container to display the toast */}
       <Box className="login-container">
-        {/* Display the logo */}
         <Box
           component="img"
           src={mainLogo}
@@ -39,7 +52,6 @@ const Login = () => {
           className="login-logo"
         />
 
-        {/* Form for login */}
         <form onSubmit={handleLogin} className="login-form">
           <TextField
             fullWidth
@@ -70,7 +82,6 @@ const Login = () => {
           </Button>
         </form>
 
-        {/* Link to Sign-Up page */}
         <Typography variant="body2" className="signup-link">
           Don't have an account?{" "}
           <Link component={RouterLink} to="/signup">

@@ -1,0 +1,23 @@
+/* Style for the sign-up container */
+.signup-container {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style for the sign-up form */
+.signup-form {
+  width: 100%;
+}
+
+/* Style for success or error messages */
+.message {
+  margin-bottom: 16px;
+  color: green;
+}
+
+.error {
+  color: red;
+}
