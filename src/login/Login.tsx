@@ -41,7 +41,7 @@ const Login = () => {
           component="img"
           src={mainLogo}
           alt="Main Logo"
-          sx={{ width: 150, height: "auto", mb: 3 }} // Adjust the size and margin
+          sx={{ width: 300, height: "auto", mb: 3 }} // Adjust the size and margin
         />
 
         {/* Form for login */}
