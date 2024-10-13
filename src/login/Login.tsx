@@ -10,7 +10,8 @@ import {
   Link,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom"; // Use RouterLink for internal routing
-import mainLogo from "../assets/main-logo.png"; // Import the logo image
+import mainLogo from "../assets/logo1024.png"; // Import the logo image
+import "./Login.css"; // Import the CSS file
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,23 +30,17 @@ const Login = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        sx={{ mt: 8 }}
-      >
+      <Box className="login-container">
         {/* Display the logo */}
         <Box
           component="img"
           src={mainLogo}
           alt="Main Logo"
-          sx={{ width: 300, height: "auto", mb: 3 }} // Adjust the size and margin
+          className="login-logo"
         />
 
         {/* Form for login */}
-        <form onSubmit={handleLogin} style={{ width: "100%" }}>
+        <form onSubmit={handleLogin} className="login-form">
           <TextField
             fullWidth
             label="Email"
@@ -76,7 +71,7 @@ const Login = () => {
         </form>
 
         {/* Link to Sign-Up page */}
-        <Typography variant="body2" sx={{ mt: 2 }}>
+        <Typography variant="body2" className="signup-link">
           Don't have an account?{" "}
           <Link component={RouterLink} to="/signup">
             Sign up here

@@ -1,0 +1,26 @@
+/* Style for the container */
+.login-container {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style for the logo */
+.login-logo {
+  width: 300px;
+  height: auto;
+  margin-bottom: 24px;
+  border-radius: 40px;
+}
+
+/* Style for the form */
+.login-form {
+  width: 100%;
+}
+
+/* Style for the sign-up link */
+.signup-link {
+  margin-top: 16px;
+}
