@@ -25,7 +25,7 @@ const Login = () => {
     if (location.state?.showToast) {
       toast.success("Account created successfully. Please log in.", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 5000, // Automatically closes after 5 seconds
       });
     }
   }, [location.state]);
@@ -34,10 +34,13 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful");
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Login failed");
+      // Show error toast when login fails
+      toast.error("Login failed. Please check your credentials.", {
+        position: "top-center",
+        autoClose: 5000, // Automatically closes after 5 seconds
+      });
     }
   };
 
