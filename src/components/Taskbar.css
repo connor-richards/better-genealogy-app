@@ -1,0 +1,20 @@
+/* Style for the combined logo and text button */
+.taskbar-button {
+  display: flex;
+  align-items: center;
+  text-transform: none;
+  border-radius: 8px;
+}
+
+/* Style for the logo image inside the taskbar */
+.taskbar-logo {
+  width: 40px;
+  height: auto;
+  margin-right: 8px; /* 1 unit of spacing between logo and text */
+  border-radius: 8px;
+}
+
+/* Align the hamburger menu icon to the right */
+.menu-icon {
+  margin-left: auto;
+}
